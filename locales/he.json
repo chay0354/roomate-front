@@ -1,0 +1,9 @@
+{
+  "name": "RooMate",
+  "ios": {
+    "CFBundleDisplayName": "RooMate"
+  },
+  "android": {
+    "app_name": "RooMate"
+  }
+}
