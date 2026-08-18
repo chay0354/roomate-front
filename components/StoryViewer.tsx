@@ -156,10 +156,14 @@ export default function StoryViewer({
             </View>
           </View>
 
-          <View style={styles.tapRow}>
-            <Pressable style={styles.tapHalf} onPress={goNext} />
-            <Pressable style={styles.tapHalf} onPress={goPrev} />
-          </View>
+          <Pressable
+            style={styles.tapRow}
+            onPress={(e) => {
+              // Physical left/right — do not use flex order (RTL swaps children).
+              if (e.nativeEvent.pageX < width / 2) goPrev();
+              else goNext();
+            }}
+          />
 
           <View style={[styles.info, { paddingBottom: Math.max(insets.bottom, 16) + 24 }]}>
             <View style={styles.tourChip}>
@@ -219,9 +223,7 @@ const styles = StyleSheet.create({
   avatarText: { color: '#fff', fontWeight: '700', fontSize: 14 },
   tapRow: {
     flex: 1,
-    flexDirection: 'row',
   },
-  tapHalf: { flex: 1 },
   info: {
     padding: 20,
     backgroundColor: 'transparent',
